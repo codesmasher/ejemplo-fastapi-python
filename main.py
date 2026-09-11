@@ -1,4 +1,7 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 
 # Configurar el depurador de Python
 import debugpy
@@ -12,7 +15,16 @@ if not debugpy.is_client_connected():
 
 app = FastAPI(title="Nombre del sistema")
 
+# 1. Montar directorio para archivos estáticos (CSS, JS, imágenes)
+app.mount("/static", StaticFiles(directory="views/static"), name="static")
+
+# 2. Configurar el motor de plantillas HTML
+templates = Jinja2Templates(directory="views/templates")
+
 # Declaración del documento raíz
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
+@app.get("/", response_class=HTMLResponse)
+async def root(request: Request):
+    return templates.TemplateResponse(
+        request,
+        "main.html"
+    )
