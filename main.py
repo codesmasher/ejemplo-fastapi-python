@@ -3,6 +3,9 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
+# Importar variables de entorno del sistema
+from config.settings import settings
+
 # Configurar el depurador de Python
 import debugpy
 if not debugpy.is_client_connected():
@@ -28,3 +31,11 @@ async def root(request: Request):
         request,
         "main.html"
     )
+
+# Ruta provcional para revisar los valores de las variables de entorno
+@app.get("/api/v1/envs")
+def get_envs():
+    return {
+        "sistema": settings.APP_NAME,
+        "entorno": settings.APP_ENV
+    }

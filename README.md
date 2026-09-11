@@ -10,7 +10,11 @@ Para el uso de la aplicación de este repositorio es necesario previamente haber
 4. PyDantic V.2.0.0 o superior
 5. DebugPy V.1.8.0 o superior
 
-Inicilizar la aplicación con el comando siguiente: 
+### Declaración de Variables de Entorno
+Copie o renombre el archivo `.env.example` por `.env` y configure las variables de entorno según sea el caso. 
+
+### Inicilizar la Aplicación
+Utilice el siguiente comando para iniciar la operación de la aplicación: 
 
 ```
 uvicorn main:app --host 0.0.0.0 --port 8000 --reload
