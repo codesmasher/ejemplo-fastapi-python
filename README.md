@@ -8,7 +8,8 @@ Para el uso de la aplicación de este repositorio es necesario previamente haber
 2. UVicorn V.0.28.0 o superior
 3. Jinja2 V.3.1.0 o superior
 4. PyDantic V.2.0.0 o superior
-5. DebugPy V.1.8.0 o superior
+5. AsyncPg V.0.29.0 o superior
+6. DebugPy V.1.8.0 o superior
 
 ### Declaración de Variables de Entorno
 Copie o renombre el archivo `.env.example` por `.env` y configure las variables de entorno según sea el caso. 
