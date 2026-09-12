@@ -8,6 +8,8 @@ from fastapi.templating import Jinja2Templates
 from config.settings import settings
 # Importar conexión a PostgreSQL
 from config.database import db
+# Importacion de Controllers
+from controllers import user_controller
 
 # Lifecycle Handler para la conexión asincrona
 @asynccontextmanager
@@ -36,8 +38,9 @@ app = FastAPI(
 
 # 1. Montar directorio para archivos estáticos (CSS, JS, imágenes)
 app.mount("/static", StaticFiles(directory="views/static"), name="static")
-
-# 2. Configurar el motor de plantillas HTML
+# 2. Agregar rutas del controlador
+app.include_router(user_controller.router)
+# 3. Configurar el motor de plantillas HTML
 templates = Jinja2Templates(directory="views/templates")
 
 # Declaración del documento raíz
